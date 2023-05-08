@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   IAddress,
   IAddressUpdate,
@@ -11,12 +11,12 @@ import {
   IUserReq,
   IUserRes,
   IUserUpdateRequest,
-} from "../../interface";
-import { useNavigate, useParams } from "react-router-dom";
-import { Instance } from "../../services/axios";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from '../../interface';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Instance } from '../../services/axios';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
@@ -41,7 +41,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
     )}`;
     setLoading(true);
     try {
-      const { data } = await Instance.get<IUserRes>("/users");
+      const { data } = await Instance.get<IUserRes>('/users');
       setUser(data);
       setUserId(data!.id);
     } catch (error) {
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const login = async (body: IReqLogin) => {
     setLoading(true);
     try {
-      const { data } = await Instance.post<IToken>("/session", body);
+      const { data } = await Instance.post<IToken>('/session', body);
       localStorage.setItem(`@WebKars:token`, data.token);
       await getMyProfile();
       toast.success(`✅ Usuário logado com sucesso!`);
@@ -75,9 +75,9 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const registerUser = async (body: IUserReq) => {
     setLoading(true);
     try {
-      await Instance.post("/users", body);
+      await Instance.post('/users', body);
       toast.success(`✅ Usuário cadastrado com sucesso!`);
-      navigate("/session");
+      navigate('/session');
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const data = error.response?.data as IAxiosData;
