@@ -20,7 +20,7 @@ const Homepage = () => {
       <Box as={"main"} w={"100%"} h={"100%"}>
         <Banner />
         <Flex as={"section"} p={"52px 15px 19px 15px"} gap={"20px"}>
-          {isLarger && <FilterProduct />}
+          {isLarger && adVehicle.length > 0 && <FilterProduct />}
           <Flex flexDir={"column"} w={"100%"}>
             <Flex
               flexWrap={isLarger ? "wrap" : "nowrap"}
@@ -34,7 +34,7 @@ const Homepage = () => {
                 <NoAdFound />
               )}
             </Flex>
-            {!isLarger && <FilterProduct />}
+            {!isLarger && adVehicle.length > 0 && <FilterProduct />}
           </Flex>
         </Flex>
         {adVehicle.length > 0 && <Pagination />}
