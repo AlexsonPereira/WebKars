@@ -45,7 +45,7 @@ const VehicleModal = () => {
         justifyContent={"center"}
         alignContent={"center"}
       >
-        <ModalHeader>Criar anuncio</ModalHeader>
+        <ModalHeader>Criar anúncio</ModalHeader>
         <ModalCloseButton />
 
         <ModalBody
@@ -57,7 +57,7 @@ const VehicleModal = () => {
           onSubmit={handleSubmit(addVehicle)}
         >
           <Text variant={"body-2-500"} color={"grey_scale.grey0"} pb={"24px"}>
-            Infomações do veículo
+            Informações do veículo
           </Text>
 
           <FormControl>
@@ -136,7 +136,7 @@ const VehicleModal = () => {
               id={"mileage"}
               label={"Quilometragem"}
               type={"text"}
-              placeholder={"30.000 km"}
+              placeholder={"Informe o KM do carro"}
               register={register}
               errors={errors}
             />
@@ -144,7 +144,7 @@ const VehicleModal = () => {
               id={"color"}
               label={"Cor"}
               type={"text"}
-              placeholder={"Branco"}
+              placeholder={"Informe a cor"}
               register={register}
               errors={errors}
             />
@@ -173,7 +173,7 @@ const VehicleModal = () => {
               id={"price"}
               label={"Preço"}
               type={"text"}
-              placeholder={"R$ 50.000,00"}
+              placeholder={"Informe o preço"}
               register={register}
               errors={errors}
             />
@@ -198,7 +198,7 @@ const VehicleModal = () => {
                     : "Imagem da capa"
                 }
                 type={"text"}
-                placeholder={"https://image.com"}
+                placeholder={"Informe a URL"}
                 register={register}
                 errors={errors}
               />
@@ -218,7 +218,7 @@ const VehicleModal = () => {
             spacing={4}
             direction="row"
             alignSelf={"end"}
-            p={"42px 0px 18px 0px"}
+            p={"0px 0px 18px 0px"}
           >
             <Button
               variant={"brand_opacity"}

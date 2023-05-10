@@ -73,7 +73,9 @@ const ProductPage = () => {
         const response = await Instance.get<any>(`/vehicle/${id}`);
         setDataCar(response.data);
       } catch (err) {
+        navigate("/notFound")
         console.log(err);
+
       }
     };
     fetchData();

@@ -15,6 +15,7 @@ export interface IAuthContext {
   deleteUser: () => Promise<void>;
   updateAddress: (body: IAddressUpdate) => Promise<void>;
   userId: string | undefined;
+  date: string;
 }
 
 export interface IResetPasswordContext {
@@ -59,6 +60,8 @@ export interface ICommentContext {
   getComment: (id: string) => Promise<void>;
   comments: any;
   listComment: boolean;
+  updateComment: (commentId: string, body: IRegisterComment) => Promise<void>;
+  deleteComment: (commentId: string) => Promise<void>;
 }
 
 export interface IUserReq {
@@ -79,7 +82,7 @@ export interface IUserRes {
   email: string;
   cpf: string;
   phone: string;
-  birthday: Date;
+  birthday: string;
   description?: string;
   buyer?: boolean;
   address: IAddress;

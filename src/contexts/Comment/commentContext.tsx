@@ -1,9 +1,14 @@
-import { createContext, useContext, useState } from "react";
-import { IAxiosData, ICommentContext, IProviderProps } from "../../interface";
-import { Instance } from "../../services/axios";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { AuthContext } from "../Auth/AuthContext";
+import { createContext, useContext, useState } from 'react';
+import {
+  IAxiosData,
+  ICommentContext,
+  IProviderProps,
+  IRegisterComment,
+} from '../../interface';
+import { Instance } from '../../services/axios';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../Auth/AuthContext';
 
 export const commentContext = createContext<ICommentContext>(
   {} as ICommentContext
@@ -46,6 +51,38 @@ const commentProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const updateComment = async (commentId: string, body: IRegisterComment) => {
+    setLoading(true);
+    setListComment(true);
+    try {
+      await Instance.patch(`/comment/${commentId}`, body);
+      toast.success(`Comentário atualizado com sucesso`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        toast.error(`${data.message}❗❗`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteComment = async (commentId: string) => {
+    setLoading(true);
+    setListComment(true);
+    try {
+      await Instance.delete(`/comment/${commentId}`);
+      toast.success(`Comentário deletado com sucesso`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        toast.error(`${data.message}❗❗`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <commentContext.Provider
       value={{
@@ -53,6 +90,8 @@ const commentProvider = ({ children }: IProviderProps) => {
         getComment,
         comments,
         listComment,
+        updateComment,
+        deleteComment,
       }}
     >
       {children}

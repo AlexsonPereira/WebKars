@@ -16,12 +16,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userUpdateSchema } from "../../schemas/Users";
 import Inputs from "../Input";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const ModalUserUpdate = ({ isOpen, onOpen, onClose }: IModal) => {
-  const { updateUser, deleteUser, user } = useContext(AuthContext);
+  const { updateUser, deleteUser, user, date } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ const ModalUserUpdate = ({ isOpen, onOpen, onClose }: IModal) => {
     localStorage.clear();
     navigate("/");
   };
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -83,7 +85,7 @@ const ModalUserUpdate = ({ isOpen, onOpen, onClose }: IModal) => {
                 type={"date"}
                 register={register}
                 errors={errors}
-                defaultValue={user.birthday}
+                defaultValue={date}
               ></Inputs>
 
               <FormLabel>Descrição</FormLabel>

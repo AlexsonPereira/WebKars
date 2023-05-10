@@ -35,6 +35,8 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
   const { brand, filterCar, carsBrand, carMark, carModel } =
     useContext(kenzieApiContext);
   const [inputModal, setInputModal] = useState<number[]>([]);
+  const [isPublished, setIsPublished] = useState(true);
+  let imagesFixed: number = 0;
 
   const {
     register,
@@ -50,12 +52,13 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
     if (!!car) {
       carMark(car?.brand);
       const imgs: number[] = [];
-
+      imagesFixed = car?.images.length;
       car?.images.map((i, index) => {
         imgs.push(index);
       });
       setInputModal(imgs);
     }
+    console.log(imagesFixed);
   }, []);
 
   const editVehicle = (body: IVehicleBody) => {
@@ -82,6 +85,8 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
       published: true,
     };
 
+    data.published = isPublished;
+
     updateVehicle(data, car?.id);
     onClose();
   };
@@ -100,7 +105,7 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
         justifyContent={"center"}
         alignContent={"center"}
       >
-        <ModalHeader>Editar anuncio</ModalHeader>
+        <ModalHeader>Editar anúncio</ModalHeader>
         <ModalCloseButton />
 
         <ModalBody
@@ -111,8 +116,13 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
           gap={"24px"}
           onSubmit={handleSubmit(editVehicle)}
         >
-          <Text variant={"body-2-500"} color={"grey_scale.grey0"} pb={"24px"}>
-            Infomações do veículo
+          <Text
+            variant={"body-2-500"}
+            color={"grey_scale.grey0"}
+            pb={"24px"}
+            p="0"
+          >
+            Informações do veículo
           </Text>
 
           <FormControl>
@@ -246,21 +256,42 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
             errors={errors}
             defaultValue={car?.description}
           />
+          <Stack direction={"column"}>
+            <FormLabel>Publicado</FormLabel>
+            <Stack direction={"row"} justifyContent={"space-between"}>
+              <Button
+                variant={isPublished ? "brand1" : "outline2"}
+                padding={"12px 28px 12px 28px"}
+                h={"48px"}
+                w={"100%"}
+                _focus={{ bg: "brand.brand1", color: "grey_scale.whiteFixed" }}
+                onClick={() => setIsPublished(true)}
+              >
+                Sim
+              </Button>
+              <Button
+                variant={isPublished ? "outline2" : "brand1"}
+                padding={"12px 28px 12px 28px"}
+                h={"48px"}
+                w={"100%"}
+                _focus={{ bg: "brand.brand1", color: "grey_scale.whiteFixed" }}
+                onClick={() => setIsPublished(false)}
+              >
+                Não
+              </Button>
+            </Stack>
+          </Stack>
 
           {inputModal.map((item, index) => {
             return (
               <Inputs
                 key={index}
                 id={`images[${String(index)}]`}
-                label={
-                  index !== 0
-                    ? index + " " + "Imagem da capa"
-                    : "Imagem da capa"
-                }
+                label={index !== 0 ? index + " " + "Imagem" : "Imagem da capa"}
                 type={"text"}
-                placeholder={"https://image.com"}
+                placeholder={"Informe a URL"}
                 defaultValue={
-                  inputModal.length <= index ? car!.images[index].img_url : ""
+                  imagesFixed < index ? "" : car!.images[index].img_url
                 }
                 register={register}
                 errors={errors}
@@ -280,25 +311,26 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
           <Stack
             spacing={4}
             direction="row"
-            alignSelf={"end"}
-            p={"42px 0px 18px 0px"}
+            p={"0px 0px 18px 0px"}
+            justifyContent={"space-between"}
           >
             <Button
               variant={"brand_opacity"}
               color={"grey_scale.grey2"}
               colorScheme="blue"
               onClick={onClose}
+              width={"100%"}
             >
               Cancelar
             </Button>
             <Button
-              bg={"red.500"}
-              variant={"outline2"}
+              variant={"alert"}
               onClick={() => delVehicle(car!.id)}
+              width={"100%"}
             >
               Excluir
             </Button>
-            <Button type={"submit"} variant={"outline2"}>
+            <Button type={"submit"} variant={"outline2"} width={"100%"}>
               Salvar
             </Button>
           </Stack>

@@ -1,5 +1,7 @@
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import AvatarCard from "../AvatarCard";
+import EditProduct from "../EditProduct";
 import {
-  Avatar,
   Box,
   Card,
   CardBody,
@@ -10,14 +12,15 @@ import {
   Tag,
   Text,
 } from "@chakra-ui/react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import AvatarCard from "../AvatarCard";
-import EditProduct from "../EditProduct";
+import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { useContext } from "react";
+
 
 const ProductCard = ({ cars }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams<{ id: string }>();
+  const { userId } = useContext(AuthContext);
 
   return (
     <Card
@@ -108,7 +111,9 @@ const ProductCard = ({ cars }: any) => {
         </HStack>
         <Text variant={"Heading-7-500"}> R$ {cars?.price},00 </Text>
       </CardFooter>
-      {location.pathname === `/profile/${id}` && <EditProduct id={cars.id} />}
+      {location.pathname === `/profile/${id}` && userId == id && (
+        <EditProduct id={cars.id} />
+      )}
     </Card>
   );
 };

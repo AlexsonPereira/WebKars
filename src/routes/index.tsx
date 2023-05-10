@@ -1,12 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import Session from "../pages/Session";
-import Homepage from "../pages/homePage";
-import ProductPage from "../pages/ProductPage";
-import ProfilePage from "../pages/ProfilePage";
-import RegisterPage from "../pages/RegisterPage";
-import RecoveryPassword from "../pages/RecoveryPassword";
-import NotFound from "../pages/NotFound";
-import Loading from "../components/Loading";
+import { Route, Routes } from 'react-router-dom'
+import Session from '../pages/Session'
+import Homepage from '../pages/homePage'
+import ProductPage from '../pages/ProductPage'
+import ProfilePage from '../pages/ProfilePage'
+import RegisterPage from '../pages/RegisterPage'
+import RecoveryPassword from '../pages/RecoveryPassword'
+import NotFound from '../pages/NotFound'
+import Loading from '../components/Loading'
 
 const Routed = () => (
   <Routes>
@@ -18,6 +18,7 @@ const Routed = () => (
     <Route path="users/resetPassword/:token" element={<RecoveryPassword />} />
     <Route path="/notFound" element={<NotFound />} />
     <Route path="/loading" element={<Loading />} />
+    <Route path="*" element={<NotFound />} />
   </Routes>
-);
-export default Routed;
+)
+export default Routed
