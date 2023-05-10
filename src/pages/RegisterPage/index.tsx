@@ -112,7 +112,7 @@ const RegisterPage = () => {
             <Inputs
               id={"phone"}
               label={"Celular"}
-              placeholder="Digite o numero do seu celular"
+              placeholder="Digite o numero do seu celular com DDD"
               type={"number"}
               register={register}
               errors={errors}

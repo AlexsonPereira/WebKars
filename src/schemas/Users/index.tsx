@@ -7,7 +7,11 @@ export const userSchema: SchemaOf<IUser> = yup.object().shape({
   name: yup.string().required(),
   email: yup.string().required(),
   cpf: yup.string().required(),
-  phone: yup.string().required(),
+  phone: yup
+    .string()
+    .required()
+    .max(11)
+    .min(11, "Verifique se foi adicionado o DDD"),
   password: yup.string().required(),
   birthday: yup.date().required(),
   description: yup.string().notRequired(),
@@ -47,7 +51,7 @@ export const userUpdateSchema: SchemaOf<IUserUpdateRequest> = yup
     name: yup.string().notRequired(),
     email: yup.string().notRequired(),
     cpf: yup.string().notRequired(),
-    phone: yup.string().notRequired(),
+    phone: yup.string().notRequired().max(11).min(11),
     password: yup.string().notRequired(),
     birthday: yup.date().notRequired(),
     description: yup.string().notRequired(),
