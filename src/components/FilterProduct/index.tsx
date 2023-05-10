@@ -110,7 +110,11 @@ const FilterProduct = () => {
             </Stack>
             <Stack padding={"10px"} color={"#868E96"} fontSize={"16px"}>
               {[...new Set(allCars.map((cars) => cars.brand))].map((item) => (
-                <Text key={item} onClick={(e) => test(e, "brand")}>
+                <Text
+                  cursor={"pointer"}
+                  key={item}
+                  onClick={(e) => test(e, "brand")}
+                >
                   {item}
                 </Text>
               ))}
@@ -125,7 +129,11 @@ const FilterProduct = () => {
             </Stack>
             <Stack p="10px 10px 0 10px" color={"#868E96"} fontSize={"16px"}>
               {[...new Set(allCars.map((e) => e.model))].map((item) => (
-                <Text key={item} onClick={(e) => test(e, "model")}>
+                <Text
+                  cursor={"pointer"}
+                  key={item}
+                  onClick={(e) => test(e, "model")}
+                >
                   {item}
                 </Text>
               ))}
@@ -140,7 +148,11 @@ const FilterProduct = () => {
             </Stack>
             <Stack p="10px 10px 0 10px" color={"#868E96"} fontSize={"16px"}>
               {[...new Set(allCars.map((e) => e.color))].map((item) => (
-                <Text key={item} onClick={(e) => test(e, "color")}>
+                <Text
+                  cursor={"pointer"}
+                  key={item}
+                  onClick={(e) => test(e, "color")}
+                >
                   {item}
                 </Text>
               ))}
@@ -155,7 +167,11 @@ const FilterProduct = () => {
             </Stack>
             <Stack p="10px 10px 0 10px" color={"#868E96"} fontSize={"16px"}>
               {[...new Set(allCars.map((e) => e.year))].map((item) => (
-                <Text key={item} onClick={(e) => test(e, "year")}>
+                <Text
+                  cursor={"pointer"}
+                  key={item}
+                  onClick={(e) => test(e, "year")}
+                >
                   {item}
                 </Text>
               ))}
@@ -170,7 +186,11 @@ const FilterProduct = () => {
             </Stack>
             <Stack p="10px 10px 0 10px" color={"#868E96"} fontSize={"16px"}>
               {[...new Set(allCars.map((e) => e.fuel))].map((item) => (
-                <Text key={item} onClick={(e) => test(e, "fuel")}>
+                <Text
+                  cursor={"pointer"}
+                  key={item}
+                  onClick={(e) => test(e, "fuel")}
+                >
                   {item}
                 </Text>
               ))}

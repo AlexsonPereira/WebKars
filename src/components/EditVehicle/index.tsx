@@ -58,7 +58,6 @@ const EditVehicle = ({ id, isOpen, onClose }: IEditVehicle) => {
       });
       setInputModal(imgs);
     }
-    console.log(imagesFixed);
   }, []);
 
   const editVehicle = (body: IVehicleBody) => {

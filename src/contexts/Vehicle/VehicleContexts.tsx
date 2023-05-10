@@ -25,7 +25,7 @@ const VehicleProvider = ({ children }: IProviderProps) => {
   const [allCars, setAllCars] = useState([] as IVehiclePost[]);
   const [inputModal, setInputModal] = useState<number[]>([1]);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setLoading } = useContext(AuthContext);
+  const { setLoading, loading } = useContext(AuthContext);
   const [page, setPage] = useState<number>(1);
   const [infoPage, setInfoPage] = useState<IPageInfo>({} as IPageInfo);
   const [dataCar, setDataCar] = useState<any | null>(null);
@@ -48,7 +48,7 @@ const VehicleProvider = ({ children }: IProviderProps) => {
       }
     };
     getVehicle();
-  }, [page]);
+  }, [page, loading]);
 
   const createVehicle = async (body: IVehiclePost) => {
     setLoading(true);

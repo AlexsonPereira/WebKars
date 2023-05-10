@@ -68,9 +68,9 @@ const ProductPage = () => {
       try {
         const response = await Instance.get<any>(`/vehicle/${id}`);
         setDataCar(response.data);
-      } catch (err) {
+      } catch (error) {
         navigate("/notFound");
-        console.log(err);
+        console.log(error);
       }
     };
     fetchData();
@@ -175,7 +175,7 @@ const ProductPage = () => {
               </Box>
               <Text fontWeight={"bold"}>R$ {dataCar.price}</Text>
             </Box>
-            {token && userId !== dataCar.user.id && (
+            {token && userId !== dataCar.user.id && dataCar.published && (
               <Button w={"32"} variant={"brand1"} onClick={openWhatsApp}>
                 Comprar
               </Button>

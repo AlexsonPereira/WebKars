@@ -22,8 +22,8 @@ const CreateAd = ({ onOpen }: IModalCreateAd) => {
       try {
         const response = await Instance.get<any>(`/users/${id}`);
         setDataUser(response.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
 
@@ -63,7 +63,12 @@ const CreateAd = ({ onOpen }: IModalCreateAd) => {
               {dataUser.buyer ? "Comprador" : "Anunciante"}
             </Text>
           </Flex>
-          <Text variant={"body-1-400"} h={"110px"} noOfLines={5}>
+          <Text
+            variant={"body-1-400"}
+            h={"110px"}
+            noOfLines={6}
+            overflowY="auto"
+          >
             {dataUser.description ? dataUser.description : "Nada informado"}
           </Text>
           {!dataUser.buyer && userVerify() && (
