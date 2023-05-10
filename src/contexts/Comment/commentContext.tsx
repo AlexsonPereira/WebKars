@@ -45,7 +45,6 @@ const commentProvider = ({ children }: IProviderProps) => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const data = error.response?.data as IAxiosData;
-        toast.error(`${data.message}❗❗`);
       }
     } finally {
       setLoading(false);
