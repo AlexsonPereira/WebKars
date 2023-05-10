@@ -62,6 +62,8 @@ export interface ICommentContext {
   listComment: boolean;
   updateComment: (commentId: string, body: IRegisterComment) => Promise<void>;
   deleteComment: (commentId: string) => Promise<void>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
 }
 
 export interface IUserReq {

@@ -1,14 +1,14 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 import {
   IAxiosData,
   ICommentContext,
   IProviderProps,
   IRegisterComment,
-} from '../../interface';
-import { Instance } from '../../services/axios';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../Auth/AuthContext';
+} from "../../interface";
+import { Instance } from "../../services/axios";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Auth/AuthContext";
 
 export const commentContext = createContext<ICommentContext>(
   {} as ICommentContext
@@ -18,6 +18,7 @@ const commentProvider = ({ children }: IProviderProps) => {
   const { setLoading } = useContext(AuthContext);
   const [comments, setComments] = useState<any>({});
   const [listComment, setListComment] = useState<boolean>(false);
+  const [description, setDescription] = useState("");
 
   const createComment = async (idVehicle: string, body: any) => {
     setLoading(true);
@@ -92,6 +93,8 @@ const commentProvider = ({ children }: IProviderProps) => {
         listComment,
         updateComment,
         deleteComment,
+        description,
+        setDescription,
       }}
     >
       {children}
