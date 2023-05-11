@@ -15,16 +15,13 @@ import {
 import ModalUserUpdate from "../ModalUpdateUser";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { useNavigate } from "react-router-dom";
 import ModalAddressUpdate from "../ModalEditAddress";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, navigate } = useContext(AuthContext);
   const [isLarger] = useMediaQuery("(max-width: 500px)");
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   const openUserModal = () => {
     setIsUserModalOpen(true);
@@ -49,12 +46,6 @@ const Profile = () => {
 
   return (
     <Menu>
-      {isOpen && (
-        <ModalUserUpdate isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-      )}
-      {isOpen && (
-        <ModalAddressUpdate isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-      )}
       <MenuButton
         as={IconButton}
         aria-label={"Options"}

@@ -1,17 +1,11 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Link,
-  Text,
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, Link, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/Auth/AuthContext";
 
 const NotFound = () => {
-  const navigate = useNavigate();
+  const { navigate } = useContext(AuthContext);
   return (
     <>
       <Header />

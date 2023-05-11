@@ -16,12 +16,16 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { userUpdateSchema } from '../../schemas/Users';
 import Inputs from '../Input';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { addressUpdateSchema } from '../../schemas/address';
 
 const ModalAddressUpdate = ({ isOpen, onOpen, onClose }: IModal) => {
   const { updateAddress, user } = useContext(AuthContext);
+
+  useEffect(()=>{
+    onClose()
+  },[user])
 
   const {
     register,
@@ -132,7 +136,6 @@ const ModalAddressUpdate = ({ isOpen, onOpen, onClose }: IModal) => {
                 <Button
                   variant={'brand1'}
                   type={'submit'}
-                  onClick={onClose}
                 >
                   Salvar alterações
                 </Button>

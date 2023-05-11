@@ -7,20 +7,16 @@ import Pagination from "../../components/Pagination";
 import { useContext, useEffect, useState } from "react";
 import { VehicleContext } from "../../contexts/Vehicle/VehicleContexts";
 import VehicleModal from "../../components/AddVehicle";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Instance } from "../../services/axios";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import NoAdFound from "../../components/NoAdFound";
-import axios from "axios";
-import { IAxiosData } from "../../interface";
-import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const { isOpen, onOpen, page, setPage, infoPage, setInfoPage } =
     useContext(VehicleContext);
-  const { setLoading, loading } = useContext(AuthContext);
+  const { setLoading, loading, navigate } = useContext(AuthContext);
   const [dataUser, setDataUser] = useState<any | null>(null);
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {

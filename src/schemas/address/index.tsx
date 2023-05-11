@@ -14,10 +14,10 @@ export const addressSchema: SchemaOf<IAddress> = yup.object().shape({
 export const addressUpdateSchema: SchemaOf<IAddressUpdate> = yup
   .object()
   .shape({
-    zipcode: yup.string().notRequired(),
-    city: yup.string().notRequired(),
-    street: yup.string().notRequired(),
-    state: yup.string().notRequired(),
-    number: yup.string().notRequired(),
+    zipcode: yup.string().required(),
+    city: yup.string().required(),
+    street: yup.string().required(),
+    state: yup.string().required(),
+    number: yup.string().required(),
     complement: yup.string().notRequired(),
   });

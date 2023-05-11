@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useMediaQuery, Box, Flex } from "@chakra-ui/react";
-
 import ProductCard from "../../components/ProductCard";
 import FilterProduct from "../../components/FilterProduct";
 import Pagination from "../../components/Pagination";

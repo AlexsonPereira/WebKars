@@ -21,7 +21,7 @@ import ImageCar from "../../components/ImageCar";
 import AddComments from "../../components/AddComments";
 import Comments from "../../components/Comments";
 import Footer from "../../components/Footer";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { Instance } from "../../services/axios";
 import { IAxiosData, IUrlImg } from "../../interface";
@@ -33,10 +33,10 @@ import { toast } from "react-toastify";
 
 const ProductPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navigate = useNavigate();
   const { dataCar, setDataCar } = useContext(VehicleContext);
   const { listComment } = useContext(commentContext);
-  const { token, setLoading, userId } = useContext(AuthContext);
+  const { token, setLoading, userId, loading, navigate } =
+    useContext(AuthContext);
   const { id } = useParams<{ id: string }>();
   const [imgUrl, setImgUrl] = useState({} as IUrlImg);
 
@@ -74,7 +74,7 @@ const ProductPage = () => {
       }
     };
     fetchData();
-  }, [id, listComment]);
+  }, [id, listComment, loading]);
 
   if (!dataCar) {
     return <p></p>;
